@@ -1,4 +1,5 @@
 import Main from './main';
+import '../sass/main.scss';
 
 const app = new Main();
 
