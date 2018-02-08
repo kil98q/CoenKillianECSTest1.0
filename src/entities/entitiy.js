@@ -4,6 +4,10 @@ class Entity {
 
     _components = {};
 
+    constructor(){
+
+    }
+
     addComponent(component) {
         const className = component.constructor.name;
         const componentName = camelCase(className);

@@ -9,27 +9,34 @@ class Engine {
         this.frameRate = frameRate;
     }
 
+    /**
+     * Add an entity to the engine
+     * @param entity
+     */
     addEntity(entity) {
-        this.systems.forEach(system => {
-
-            const hasRequiredComponents = system.requiredComponents.every(
-                component => entity.hasComponentClass(component.name));
-
-            if ( !hasRequiredComponents ){
-                return;
-            }
-            system.targetEntities.push(entity);
-        });
+        this.systems.forEach(system => system.onNewEntity(entity));
     }
 
+    /**
+     * Remove an entity from the engine
+     * @param entity
+     */
     removeEntity(entity) {
-
+        this.systems.forEach(system => system.onRemoveEntity(entity));
     }
 
+    /**
+     * Add a system to the engine
+     * @param system
+     */
     addSystem(system) {
         this.systems.push(system);
     }
 
+    /**
+     * Remove a system from the engine
+     * @param system
+     */
     removeSystem(system) {
         removeFromArray(this.systems, system);
     }
@@ -48,16 +55,27 @@ class Engine {
      */
     set frameRate(value) {
         this._frameRate = value;
+        if(!this.updateIntervalId){
+            return;
+        }
         clearInterval(this.updateIntervalId);
+        this.start();
+    }
+
+    start(){
         this.updateIntervalId = setInterval(this.update, 1000 / this.frameRate);
     }
 
+    /**
+     * Update frame tick
+     */
     update = () => {
         this.systems.forEach(system => system.update());
     };
 
 }
 
+// default properties
 Engine.default = {
     frameRate : 60
 };

@@ -15,6 +15,11 @@ export default class Main {
         player.addComponent(new Velocity(1, 1, 1, 1));
 
         engine.addEntity(player);
+
+        engine.start();
+
+        // just for fun: na 5 seconden zetten we de framerate naar 1fps
+        setTimeout(() => engine.frameRate = 1, 5000);
     }
 
 }

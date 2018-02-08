@@ -4,7 +4,9 @@ import Transform from "../components/transform.component";
 
 class MovementSystem extends System {
 
-    requiredComponents = [ Velocity, Transform ];
+    getRequiredComponents(){
+        return [ Velocity, Transform ];
+    }
 
     updateEntity = entity => {
         const { transform, velocity } = entity.components;
