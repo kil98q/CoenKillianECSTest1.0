@@ -1,25 +1,20 @@
-import MovingEntity from './entities/movingentity';
-import HtmlRenderer from './htmlrenderer';
+import Engine from "./engine";
+import MovementSystem from "./systems/movement.system";
+import Entity from "./entities/entitiy";
+import Transform from "./components/transform.component";
+import Velocity from "./components/velocity.component";
 
 export default class Main {
 
     constructor() {
-        // todo: netter als we een echte gameloop hebben
+        const engine = new Engine();
+        engine.addSystem(new MovementSystem());
 
-        console.log("base engine running");
+        const player = new Entity();
+        player.addComponent(new Transform(200));
+        player.addComponent(new Velocity(1, 1, 1, 1));
 
-        const htmlRenderer = new HtmlRenderer();
-
-        for ( let i = 0; i < 5; i++ ){
-            const ferrari = new MovingEntity(-500 + i * 75,
-                                             -400 + Math.random() * 800,
-                                             0,
-                                             0,
-                                             'ferrari',
-                                             { x : 0, y : 0, z : -2 });
-            htmlRenderer.add(ferrari);
-        }
-
+        engine.addEntity(player);
     }
 
 }
