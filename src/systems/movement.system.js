@@ -11,10 +11,8 @@ class MovementSystem extends System {
     updateEntity = entity => {
         const { transform, velocity } = entity.components;
 
-        transform.x += velocity.x;
-        transform.y += velocity.y;
-        transform.z += velocity.z;
-        transform.rotation += velocity.rotation;
+        transform.position.add(velocity.position);
+        transform.rotation.add(velocity.rotation);
 
         console.log(transform);
     }
