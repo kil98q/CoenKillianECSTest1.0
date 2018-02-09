@@ -18,6 +18,10 @@ class System {
         console.warn('override this method');
     }
 
+    onEntityAdded(entity){
+
+    }
+
     /**
      * Handler for validating new entities
      * @param entity
@@ -31,6 +35,7 @@ class System {
             return;
         }
         this.targetEntities.push(entity);
+        this.onEntityAdded(entity);
     }
 
     /**
