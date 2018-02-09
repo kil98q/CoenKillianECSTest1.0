@@ -1,9 +1,9 @@
+import Vec3 from '../utils/vec3.utils.js';
+
 class Velocity {
 
-    constructor(x = 0, y = 0, z = 0, rotation = 0) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+    constructor(position = new Vec3(0, 0, 0), rotation = new Vec3(0, 0, 0)) {
+        this.position = position
         this.rotation = rotation;
     }
 
