@@ -3,6 +3,7 @@ import MovementSystem from "./systems/movement.system";
 import Entity from "./entities/entitiy";
 import Transform from "./components/transform.component";
 import Velocity from "./components/velocity.component";
+import Vec3 from './utils/vec3.utils.js';
 
 export default class Main {
 
@@ -11,8 +12,8 @@ export default class Main {
         engine.addSystem(new MovementSystem());
 
         const player = new Entity();
-        player.addComponent(new Transform(200));
-        player.addComponent(new Velocity(1, 1, 1, 1));
+        player.addComponent(new Transform(new Vec3(0, 0, 0)));
+        player.addComponent(new Velocity(new Vec3(1, 1, 1), new Vec3(1, 1, 1)));
 
         engine.addEntity(player);
 
