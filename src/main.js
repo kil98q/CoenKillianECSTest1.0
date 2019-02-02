@@ -6,6 +6,7 @@ import Velocity from "./components/velocity.component";
 import Vec3 from './utils/vec3.utils.js';
 import Destination from "./components/destination.component";
 import SteeringSystem from "./systems/steering.system";
+import RenderSystem from "./systems/Render.system";
 
 export default class Main {
 
@@ -13,6 +14,7 @@ export default class Main {
         const engine = new Engine();
         engine.addSystem(new MovementSystem());
         engine.addSystem(new SteeringSystem());
+        engine.addSystem(new RenderSystem());
 
         const player = new Entity();
         player.addComponent(new Transform(new Vec3(0, 0, 0)));
@@ -24,7 +26,7 @@ export default class Main {
         engine.start();
 
         // just for fun: na 5 seconden zetten we de framerate naar 1fps
-        setTimeout(() => engine.frameRate = 1, 5000);
+        //setTimeout(() => engine.frameRate = 1, 5000);
     }
 
 }
